@@ -47,6 +47,9 @@ const EditTree = () => {
     </>
   );
 
+
+
+
   return (
     <div>
       <div className="folderFileActions">{createFileFolder}</div>
@@ -69,7 +72,8 @@ const EditTree = () => {
         searchMatch={(node, term) =>
           node.data.name.toLowerCase().includes(term.toLowerCase())
         }
-        {...controller}
+        { ...controller }
+
       >
         {Node}
       </Tree>
