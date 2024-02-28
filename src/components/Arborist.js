@@ -1,17 +1,37 @@
 // 1: Uncontrolled Tree
-import { useRef, useState } from "react";
-
-import { Tree } from "react-arborist";
-import { data } from "../data/data";
+import { useRef, useState,useEffect} from "react";
+import { Tree,useSimpleTree} from "react-arborist";
 
 import Node from "./Node";
 
 import { TbFolderPlus } from "react-icons/tb";
 import { AiOutlineFileAdd } from "react-icons/ai";
 
+const initialData=[
+  {
+    id: "1",
+    name: "public",
+    children: [{ id: "c1-1", name: "index.html" }]
+  },
+  {
+    id: "2",
+    name: "src",
+    children: [
+      { id: "c2-1", name: "App.js" },
+      { id: "c2-2", name: "index.js" },
+      { id: "c2-3", name: "styles.css" }
+    ]
+  },
+  { id: "3", name: "package.json" },
+  { id: "4", name: "README.md" }
+];
 const Arborist = () => {
   const [term, setTerm] = useState("");
   const treeRef = useRef(null);
+  const [ data, controller ] = useSimpleTree( initialData );
+  useEffect( () => {
+    console.log( data );
+  }, [ data ]);
 
   const createFileFolder = (
     <>
@@ -39,7 +59,7 @@ const Arborist = () => {
       />
       <Tree
         ref={treeRef}
-        initialData={data}
+        data={data}
         width={260}
         height={1000}
         indent={24}
@@ -49,6 +69,7 @@ const Arborist = () => {
         searchMatch={(node, term) =>
           node.data.name.toLowerCase().includes(term.toLowerCase())
         }
+        {...controller}
       >
         {Node}
       </Tree>
