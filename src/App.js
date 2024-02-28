@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import "./styles.css";
+
+import { FaReact } from "react-icons/fa";
+import Arborist from "./components/Arborist";
+import { content } from "./data/content";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app-container">
+      <div className="sidebar">
+        <div className="heading-title">
+          <FaReact color="#00d8ff" size="32" />
+          <span>React-arborist</span>
+        </div>
+        <Arborist />
+      </div>
+      <div className="content">
+        <ul>
+          {content.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
