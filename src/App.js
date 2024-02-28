@@ -1,7 +1,7 @@
 import "./styles.css";
 
 import { FaReact } from "react-icons/fa";
-import Arborist from "./components/Arborist";
+import EditTree from "./components/EditTree";
 import { content } from "./data/content";
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
           <FaReact color="#00d8ff" size="32" />
           <span>React-arborist</span>
         </div>
-        <Arborist />
+        <EditTree />
       </div>
       <div className="content">
         <ul>

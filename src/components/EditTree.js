@@ -25,7 +25,7 @@ const initialData=[
   { id: "3", name: "package.json" },
   { id: "4", name: "README.md" }
 ];
-const Arborist = () => {
+const EditTree = () => {
   const [term, setTerm] = useState("");
   const treeRef = useRef(null);
   const [ data, controller ] = useSimpleTree( initialData );
@@ -77,4 +77,4 @@ const Arborist = () => {
   );
 };
 
-export default Arborist;
+export default EditTree;
