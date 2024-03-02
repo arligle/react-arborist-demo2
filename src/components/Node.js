@@ -56,7 +56,7 @@ const Node = ({ node, style, dragHandle, tree }) => {
               autoFocus
             />
           ) : (
-            <span>{node.data.name}</span>
+              <span>{ node.data.name }</span>
           )}
         </span>
       </div>

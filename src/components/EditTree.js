@@ -10,25 +10,27 @@ import { AiOutlineFileAdd } from "react-icons/ai";
 const initialData=[
   {
     id: "1",
+    uuid: "1798797987969",
     name: "public",
-    children: [{ id: "c1-1", name: "index.html" }]
+    children: [{ id: "c1-1",uuid:"33456546", name: "index.html" }]
   },
   {
     id: "2",
+    uuid: "1798797987dsfds",
     name: "src",
     children: [
-      { id: "c2-1", name: "App.js" },
-      { id: "c2-2", name: "index.js" },
-      { id: "c2-3", name: "styles.css" }
+      { id: "c2-1", uuid:"33456546",name: "App.js" },
+      { id: "c2-2",uuid:"6897987",name: "index.js" },
+      { id: "c2-3", uuid:"33456546",name: "styles.css" }
     ]
   },
-  { id: "3", name: "package.json" },
-  { id: "4", name: "README.md" }
+  { id: "3", uuid:"33456546",name: "package.json" },
+  { id: "4", uuid:"33456546",name: "README.md" }
 ];
 const EditTree = () => {
   const [term, setTerm] = useState("");
   const treeRef = useRef(null);
-  const [ data, controller ] = useSimpleTree( initialData );
+  const [ data ] = useSimpleTree( initialData );
   useEffect( () => {
     console.log( data );
   }, [ data ]);
@@ -47,6 +49,18 @@ const EditTree = () => {
     </>
   );
 
+  const onRename = ({ id, name }) => {
+  const node = treeRef.current.get(id);
+  if (node) {
+    node.data.name = name;
+    initialData[ 0 ].uuid = '999999999999999';
+    console.log(data);
+  }
+};
+  const onDelete = ({ ids }) => {};
+  const onCreate = ({ parentId, index, type }) => {};
+  const onMove = ( { dragIds, parentId, index } ) => {
+};
 
 
 
@@ -72,8 +86,11 @@ const EditTree = () => {
         searchMatch={(node, term) =>
           node.data.name.toLowerCase().includes(term.toLowerCase())
         }
-        { ...controller }
 
+        onRename={onRename}
+        onDelete={onDelete}
+        onCreate={onCreate}
+        onMove={onMove}
       >
         {Node}
       </Tree>
